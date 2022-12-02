@@ -4,7 +4,6 @@ import { ReservacionService } from '../services/reservacion.service';
 import { FormGroup,FormBuilder,Validators, RequiredValidator,   } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-new-reservacion',
@@ -14,61 +13,59 @@ import { DatePipe } from '@angular/common';
 export class NewReservacionPage implements OnInit {
 
   public reservacion: Reservacion;
-  public valMessage!: Object;
+  public valMessage!: object;
   public resForm!:FormGroup;
   public date!:Date;
   public date1!:Date;
   public dateS!:string;
-  constructor(private reserService: ReservacionService, private fb:FormBuilder,private dp:DatePipe) {
+  constructor(private reserService: ReservacionService, private fb:FormBuilder) {
     this.reservacion={
       nombre:"",
-      fecha:Date(),
+      fecha: new Date(""),
       telefono:"",
       monto:""
     }
    }
 
   ngOnInit() {
-    this.date1 = new Date();
-    this.date.setDate(this.date1.getDate()+1)
-    this.dateS = this.dp.transform(this.date1,'YYYY-MM-dd')
+    //this.dateS = this.dp.transform(this.date,'YYYY-MM-dd')
 
     /*Tal vez falte el formulario pero se puede construir facil, trato de dejar todo hecho, 
     hubo unos errores fatales en el proyecto que tomaron gran parte de la hora para que corriera, disculpas */
 
     this.resForm =  this.fb.group({
-      fecha:['',Validators.compose([
+      fechaF:['',Validators.compose([
+        Validators.required
+      ])]/* ,
+      alberca:[0,Validators.compose([
+        Validators.required,
+      ])],
+      brincolin:[false,Validators.compose([
         Validators.required
       ])],
-      alberca:['',Validators.compose([
+      mesa:[false,Validators.compose([
         Validators.required
       ])],
-      brincolin:['',Validators.compose([
+      futbol:[false,Validators.compose([
         Validators.required
-      ])],
-      mesa:['',Validators.compose([
-        Validators.required
-      ])],
-      futbol:['',Validators.compose([
-        Validators.required
-      ])],
+      ])], */
 
     });
 
-    this.valMessage={
-      fecha:[
-        {type:'required',message:'Fecha obligatoria'}
-      ],
+    /* ,
       alberca:[
         {type:'required',message:'Selección de alberca obligatoria'}
       ],
-      fecha:[
+      brincolin:[
         {type:'required',message:'Fecha obligatoria'}
       ],
-      fecha:[
+      mesa:[
         {type:'required',message:'Fecha obligatoria'}
       ],
-    }
+      futbol:[
+        {type:'required',message:'Fecha obligatoria'}
+      ], */
+    
   }
 
 }

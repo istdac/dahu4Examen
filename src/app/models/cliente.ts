@@ -4,5 +4,4 @@ export class Cliente {
     domicilio!:string;
     nombre!:string;
     admin!:boolean;    
-
 }

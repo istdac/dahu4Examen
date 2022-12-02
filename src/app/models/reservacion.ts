@@ -1,8 +1,8 @@
 export class Reservacion {
     id?:string;
-    fecha!:string;
+    fecha!:Date;
     nombre!:string;
     telefono!:string;
     monto!:string;
-    
+
 }
